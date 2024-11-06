@@ -16,6 +16,7 @@ int main() {
     cv::Mat yellow_mask;
     cv::Scalar lower_yellow = cv::Scalar(20, 150, 150);
     cv::Scalar upper_yellow = cv::Scalar(30, 255, 255);
+    // 바이너리 처리
     cv::inRange(image_hsv, lower_yellow, upper_yellow, yellow_mask);
 
     // 가우시안 블러 처리
@@ -23,9 +24,9 @@ int main() {
     cv::GaussianBlur(yellow_mask, imgGaussianBlur, cv::Size(5, 5), 2);
 
     // 마스크 이미지 출력
-    cv::imshow("Original Image", image_original);
-    cv::imshow("Yellow Mask", yellow_mask);
-    cv::imshow("imgGaussianBlur", imgGaussianBlur);
+    cv::imshow("Original Image", image_original); // 원본 이미지
+    cv::imshow("Yellow Mask", yellow_mask); // 바이너리 처리만 한 이미지
+    cv::imshow("imgGaussianBlur", imgGaussianBlur); // 가우시안 블러까지 처리한 이미지
     
     cv::waitKey(0);
 
