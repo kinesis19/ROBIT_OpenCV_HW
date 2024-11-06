@@ -124,4 +124,7 @@ AMENT_IGNORE
 .history
 .ionide
 
+# Cache 미포함하기
+.cache/
+
 # End of https://www.toptal.com/developers/gitignore/api/c++,cmake,ros2,visualstudiocode,linux,opencv
