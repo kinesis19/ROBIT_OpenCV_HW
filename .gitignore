@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/c++,opencv,visualstudiocode,linux
-# Edit at https://www.toptal.com/developers/gitignore?templates=c++,opencv,visualstudiocode,linux
+# Created by https://www.toptal.com/developers/gitignore/api/c++,cmake,ros2,visualstudiocode,linux,opencv
+# Edit at https://www.toptal.com/developers/gitignore?templates=c++,cmake,ros2,visualstudiocode,linux,opencv
 
 ### C++ ###
 # Prerequisites
@@ -35,6 +35,23 @@
 *.out
 *.app
 
+### CMake ###
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+
+### CMake Patch ###
+# External projects
+*-prefix/
+
 ### Linux ###
 *~
 
@@ -59,6 +76,35 @@
 */cmake_install.cmake
 .DS_Store
 
+### ROS2 ###
+install/
+log/
+build/
+
+# Ignore generated docs
+*.dox
+*.wikidoc
+
+# eclipse stuff
+.project
+.cproject
+
+# qcreator stuff
+
+srv/_*.py
+*.pcd
+*.pyc
+qtcreator-*
+*.user
+
+
+# Emacs
+.#*
+
+# Colcon custom files
+COLCON_IGNORE
+AMENT_IGNORE
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -78,4 +124,4 @@
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/c++,opencv,visualstudiocode,linux
+# End of https://www.toptal.com/developers/gitignore/api/c++,cmake,ros2,visualstudiocode,linux,opencv
