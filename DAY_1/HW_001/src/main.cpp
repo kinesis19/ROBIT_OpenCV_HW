@@ -1,13 +1,32 @@
+#include <opencv2/core/types.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/opencv.hpp>
 #include <iostream>
 
 int main() {
+    // 이미지 타겟팅
+    cv::Mat image_original = cv::imread("../resources/testImg.png");
 
-    cv::Mat image = cv::Mat::zeros(480, 640, CV_8UC3);
+    // hsv 변환
+    cv::Mat image_hsv;
+    cv::cvtColor(image_original, image_hsv, cv::COLOR_BGR2HSV);
 
-    cv::Mat img = cv::imread("../resources/testImg.png");
-    cv::imshow("Test Image", img);
+    // 노란색 마스크
+    // 색상, 채도, 명도
+    cv::Mat yellow_mask;
+    cv::Scalar lower_yellow = cv::Scalar(20, 150, 150);
+    cv::Scalar upper_yellow = cv::Scalar(30, 255, 255);
+    cv::inRange(image_hsv, lower_yellow, upper_yellow, yellow_mask);
+
+    // 가우시안 블러 처리
+    cv::Mat imgGaussianBlur;
+    cv::GaussianBlur(yellow_mask, imgGaussianBlur, cv::Size(5, 5), 2);
+
+    // 마스크 이미지 출력
+    cv::imshow("Original Image", image_original);
+    cv::imshow("Yellow Mask", yellow_mask);
+    cv::imshow("imgGaussianBlur", imgGaussianBlur);
+    
     cv::waitKey(0);
 
     return 0;
