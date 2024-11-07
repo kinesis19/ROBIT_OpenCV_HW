@@ -44,20 +44,21 @@ int main() {
     cv::morphologyEx(mask_blue, image_blue, cv::MORPH_OPEN, kernel);
 
     // Close 처리
-    // 중요! Mat는 재사용이 가능하다는 것을 알게 됨 (대박사건) 내가 몰랐던 게 맞음. 변수 같은 개념이니까.
+    // 중요! Mat는 재사용   이 가능하다는 것을 알게 됨 (대박사건) 내가 몰랐던 게 맞음. 변수 같은 개념이니까.
     cv::morphologyEx(mask_red, image_red, cv::MORPH_CLOSE, kernel);
     cv::morphologyEx(mask_green, image_green, cv::MORPH_CLOSE, kernel);
     cv::morphologyEx(mask_blue, image_blue, cv::MORPH_CLOSE, kernel);
 
     // 여기서부터는 내가 만든 Open 메서드와 Close 메서드
-    cv::Mat image_red_my, image_green_my, image_blue_my;
-    OpenCV_Open(mask_red, image_red_my, cv::MORPH_OPEN, kernel, cv::Point(-1, 1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
-    OpenCV_Open(mask_green, image_green_my, cv::MORPH_OPEN, kernel, cv::Point(-1, 1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
-    OpenCV_Open(mask_blue, image_blue_my, cv::MORPH_OPEN, kernel, cv::Point(-1, 1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
+    cv::Mat image_red_my_open, image_green_my_open, image_blue_my_open;
+    OpenCV_Open(mask_red, image_red_my_open, cv::MORPH_OPEN, kernel, cv::Point(-1, 1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
+    OpenCV_Open(mask_green, image_green_my_open, cv::MORPH_OPEN, kernel, cv::Point(-1, 1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
+    OpenCV_Open(mask_blue, image_blue_my_open, cv::MORPH_OPEN, kernel, cv::Point(-1, 1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
 
-    OpenCV_Close(mask_red, image_red_my, cv::MORPH_CLOSE, kernel, cv::Point(-1, 1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
-    OpenCV_Close(mask_green, image_green_my, cv::MORPH_CLOSE, kernel, cv::Point(-1, 1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
-    OpenCV_Close(mask_blue, image_blue_my, cv::MORPH_CLOSE, kernel, cv::Point(-1, 1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
+    cv::Mat image_red_my_close, image_green_my_close, image_blue_my_close;
+    OpenCV_Close(mask_red, image_red_my_close, cv::MORPH_CLOSE, kernel, cv::Point(-1, 1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
+    OpenCV_Close(mask_green, image_green_my_close, cv::MORPH_CLOSE, kernel, cv::Point(-1, 1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
+    OpenCV_Close(mask_blue, image_blue_my_close, cv::MORPH_CLOSE, kernel, cv::Point(-1, 1), 1, cv::BORDER_CONSTANT, cv::morphologyDefaultBorderValue());
 
     // 마스크 이미지 출력
     cv::imshow("Original Image", image_original); // 원본 이미지
@@ -65,11 +66,13 @@ int main() {
     cv::imshow("Green Image", image_green); // 처리만 한 이미지
     cv::imshow("Blue Image", image_blue); // 처리만 한 이미지
 
-    cv::imshow("My Red Image", image_red_my); // 처리만 한 이미지
-    cv::imshow("My Green Image", image_green_my); // 처리만 한 이미지
-    cv::imshow("My Blue Image", image_blue_my); // 처리만 한 이미지
+    cv::imshow("My Open Red Image", image_red_my_open); // 내가 만든 OpenCV_Open으로 처리만 한 이미지
+    cv::imshow("My Open Green Image", image_green_my_open); // 내가 만든 OpenCV_Open으로 처리만 한 이미지
+    cv::imshow("My Open Blue Image", image_blue_my_open); // 내가 만든 OpenCV_Open으로 처리만 한 이미지
 
-    cv::imshow("imgGaussianBlur", imgGaussianBlur); // 가우시안 블러까지 처리한 이미지
+    cv::imshow("My Close Red Image", image_red_my_close); // 내가 만든 OpenCV_Open으로 처리만 한 이미지
+    cv::imshow("My Close Green Image", image_green_my_close); // 내가 만든 OpenCV_Open으로 처리만 한 이미지
+    cv::imshow("My Close Blue Image", image_blue_my_close); // 내가 만든 OpenCV_Open으로 처리만 한 이미지
     
     cv::waitKey(0);
 

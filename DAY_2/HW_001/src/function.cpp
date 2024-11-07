@@ -17,7 +17,8 @@
 void OpenCV_Open(cv::InputArray src, cv::OutputArray dst, int op, cv::InputArray kernel, cv::Point anchor, int iterations, int borderType, const cv::Scalar& borderValue) {
     // MORPH_OPEN으로 파라미터를 받았을 때 = OpenCV의 Open 메서드를 사용하겠다
     if(op == 2){
-        cv::erode(src, dst, kernel);
+        cv::erode(src, dst, kernel, anchor, iterations, borderType, borderValue);
+        cv::dilate(src, dst, kernel, anchor, iterations, borderType, borderValue);
     }
 }
 
@@ -25,6 +26,7 @@ void OpenCV_Open(cv::InputArray src, cv::OutputArray dst, int op, cv::InputArray
 void OpenCV_Close(cv::InputArray src, cv::OutputArray dst, int op, cv::InputArray kernel, cv::Point anchor, int iterations, int borderType, const cv::Scalar& borderValue) {
 
     if(op == 3){
-        cv::dilate(src, dst, kernel);
+        cv::dilate(src, dst, kernel, anchor, iterations, borderType, borderValue);
+        cv::erode(src, dst, kernel, anchor, iterations, borderType, borderValue);
     }
 }
