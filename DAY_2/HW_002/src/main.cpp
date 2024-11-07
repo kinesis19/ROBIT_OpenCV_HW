@@ -82,7 +82,6 @@ int main() {
     cv::imshow("Original Image", image_original); // 원본 이미지
     
     // 디버깅
-    // label의 디버깅 해보니까 각각 6, 3, 2로 잡힘 -> 이러면 안 되는 거 아닌가?
     // std::cout << "labels: \n" << label_redBall  << std::endl;
     // std::cout << "number of labels: \n" << cnt_image_red  << std::endl;
     // stats의 참조는 .at<int>(행, 열) 형식임
